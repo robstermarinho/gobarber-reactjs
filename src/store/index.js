@@ -10,7 +10,7 @@ const sagaMonitor =
     : null;
 
 // Create saga middleware
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 const middlewares = [sagaMiddleware];
 
