@@ -2,6 +2,7 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import api from '~/services/api';
 import { signInSuccess, signFailure } from './actions';
 import history from '~/services/history';
+import { toast } from 'react-toastify';
 
 // SIGN_IN_REQUEST
 export function* signIn({ payload }) {
@@ -21,12 +22,13 @@ export function* signIn({ payload }) {
     const { token, user } = response.data;
 
     if (!user.provider) {
-      console.tron.error('The user is not a PROVIDER.');
+      toast.error('The user is not a PROVIDER.');
       return;
     }
     yield put(signInSuccess(token, user));
     history.push('/dashboard');
   } catch (error) {
+    toast.error('Invalid email and password.');
     yield put(signFailure());
   }
 }
