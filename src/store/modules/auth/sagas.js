@@ -1,6 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import api from '~/services/api';
-import { signInSuccess } from './actions';
+import { signInSuccess, signFailure } from './actions';
 import history from '~/services/history';
 
 // SIGN_IN_REQUEST
@@ -27,7 +27,7 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
     history.push('/dashboard');
   } catch (error) {
-    console.tron.error(error);
+    yield put(signFailure());
   }
 }
 // Triggered by reducer actions
