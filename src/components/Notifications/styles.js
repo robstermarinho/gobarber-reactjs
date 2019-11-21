@@ -34,6 +34,7 @@ export const NotificationList = styled.div`
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px;
   padding: 15px 5px;
+  display: ${props => (props.visible ? 'block' : 'none')};
   &::before {
     content: '';
     position: absolute;
@@ -67,7 +68,7 @@ export const Notification = styled.div`
     font-size: 12px;
     opacity: 0.6;
     display: block;
-    margin: 2px 0 0;
+    margin: 2px 0 5px 0;
   }
   button {
     font-size: 12px;
