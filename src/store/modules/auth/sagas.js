@@ -27,6 +27,7 @@ export function* signIn({ payload }) {
     }
 
     yield put(signInSuccess(token, user));
+    api.defaults.headers.Authorization = `Bearer ${token}`;
     history.push('/dashboard');
   } catch (error) {
     toast.error('Invalid email and password.');
@@ -66,9 +67,14 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut() {
+  history.push('/');
+}
+
 // Triggered by reducer actions
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);

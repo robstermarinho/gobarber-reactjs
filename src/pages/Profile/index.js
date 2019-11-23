@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container } from './styles';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 import AvatarInput from './AvatarInput';
-import { logOut } from '~/store/modules/auth/actions';
+import { signOut } from '~/store/modules/auth/actions';
 
 export default function Profile() {
   const profile = useSelector(state => state.user.profile);
@@ -16,7 +16,7 @@ export default function Profile() {
   }
 
   function handleLogOut() {
-    dispatch(logOut());
+    dispatch(signOut());
   }
 
   return (
